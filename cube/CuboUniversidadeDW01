@@ -1,0 +1,50 @@
+<Schema name="UniDw4">
+  <Cube name="Cubo_Notas_e_Faltas" visible="true" cache="true" enabled="true">
+    <Table name="fato_aluno_prof_discip" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_aluno_fk" name="DimAluno">
+      <Hierarchy visible="true" hasAll="true" primaryKey="id_aluno">
+        <Table name="aluno" schema="public" alias="">
+        </Table>
+        <Level name="level_aluno" visible="true" column="aluno" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_disciplina_fk" name="DimDisciplina">
+      <Hierarchy name="HDiscip" visible="true" hasAll="true" primaryKey="id_disciplina">
+        <Table name="disciplina" schema="public" alias="">
+        </Table>
+        <Level name="level_disciplina" visible="true" column="disciplina" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_professor_fk" name="DimProfessor">
+      <Hierarchy name="HProf" visible="true" hasAll="true" primaryKey="id_professor">
+        <Table name="professor" schema="public" alias="">
+        </Table>
+        <Level name="LevelProfessor" visible="true" column="professor" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_situacao_fk" name="DimSituacao">
+      <Hierarchy name="Hsituacao" visible="true" hasAll="true" primaryKey="id_situacao">
+        <Table name="situacao" schema="public" alias="">
+        </Table>
+        <Level name="LevelSituacao" visible="true" column="situacao" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_cidade_fk" name="DimCidade">
+      <Hierarchy name="HCidade" visible="true" hasAll="true" primaryKey="id_cidade">
+        <Table name="cidade" schema="public" alias="">
+        </Table>
+        <Level name="LevelCidade" visible="true" column="cidade" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="faltas" column="faltas" datatype="Integer" aggregator="sum" description="Soma das Faltas" visible="true">
+    </Measure>
+    <Measure name="notas" column="notas" datatype="Integer" aggregator="avg" description="Media das Notas" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
